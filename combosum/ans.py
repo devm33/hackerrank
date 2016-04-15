@@ -12,9 +12,13 @@ def memodict(f):
 
 @memodict
 def solutions((N, K)):
+    print 'calling with N=%s K=%s' % (N, K)
     if N == 1 or K == 1:
-        return 1 if K == 1 else 0
-    return sum([solutions((N-i, K-1)) for i in range(N)])
+        ret = 1 if K == 1 else 0
+    else:
+        ret = sum([solutions((N-i, K-1)) for i in range(1, N)])
+    print '(%s, %s) = %s' % (N, K, ret)
+    return ret
 
 def main():
     T = int(raw_input())
