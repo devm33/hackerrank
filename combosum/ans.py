@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
 def memodict(f):
     """ Memoization decorator for a function taking a single argument """
     class memodict(dict):
@@ -25,7 +24,6 @@ def main():
     for i in range(T):
         N, K = map(int, raw_input().split())
         print solutions((N, K))
-
 
 if __name__ == "__main__":
     main()
