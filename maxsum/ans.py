@@ -1,29 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-def modsum(M, arr):
-    return reduce(lambda a, x: (a+x)%M, arr)
-
 def maxsum(N, M, arr):
-    # first check the subarrays of size 1
+    # first mod the array
     modarr = map(lambda x: x % M, arr)
+
+    # initialize the max for subarray size 1
     curmax = max(modarr)
 
-    # have we already peeked?
-    if curmax == M - 1:
-        return curmax
-
-    # otherwise need check subarrays
-
-    # can remove zeros since they do nothing
-    modarr = [x for x in modarr if x != 0]
-    N = len(modarr)
-
-    subsize = N
-    while subsize > 1 and curmax < M - 1:
-        for offset in range(N - subsize + 1):
-            curmax = max(curmax, modsum(M, modarr[offset:offset+subsize]))
-        subsize -= 1
+    sumsize = 1 # number of elements added to current
+    sumarr = modarr[:]
+    while sumsize < N and curmax < M - 1:
+        for i in range(N-sumsize):
+            sumarr[i] = sumarr[i] + modarr[i+sumsize]
+            if sumarr[i] >= M:
+                sumarr[i] -= M
+            curmax = max(curmax, sumarr[i])
+        sumsize += 1
 
     return curmax
 
