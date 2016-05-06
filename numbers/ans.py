@@ -2,7 +2,7 @@
 
 DIGIT = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 TEEN = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
-TEN = ['', 'ten', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'nienty']
+TEN = ['', 'ten', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
 ORDER = ['', 'thousand', 'million', 'billion', 'trillion']
 
 def printnum(num):
@@ -53,6 +53,8 @@ class TestPrintNum(unittest.TestCase):
         self.assertEqual(printnum(30), 'thirty')
         self.assertEqual(printnum(1234), 'one thousand two hundred thirty four')
         self.assertEqual(printnum(17319), 'seventeen thousand three hundred nineteen')
+        self.assertEqual(printnum(107509), 'one hundred seven thousand five hundred nine')
+        self.assertEqual(printnum(91107509), 'ninety one million one hundred seven thousand five hundred nine')
 
 
 if __name__ == "__main__":
