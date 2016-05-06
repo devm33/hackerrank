@@ -15,24 +15,19 @@ def printnum(num):
     # import pdb; pdb.set_trace()
 
     while num > 0:
+        one, ten, hundred = [(num % 10**(p+1)) // 10**p for p in range(3)]
+        num = num // 1000
         ans.append(ORDER[order])
         order += 1
-
-        cur_ten = num % 100
-        if 9 < cur_ten < 20:
-            ans.append(TEEN[cur_ten - 10])
+        if ten == 1:
+            ans.append(TEEN[one])
         else:
-            cur_digit = cur_ten % 10
-            if cur_digit > 0:
-                ans.append(DIGIT[cur_digit])
-            ans.append(TEN[cur_ten // 10])
-
-        cur_hundred = num % 1000
-        if cur_hundred > 100:
+            if one > 0:
+                ans.append(DIGIT[one])
+            ans.append(TEN[ten])
+        if hundred > 0:
             ans.append('hundred')
-            ans.append(DIGIT[cur_hundred // 100])
-
-        num = num // 1000
+            ans.append(DIGIT[hundred])
 
     return ' '.join(reversed(filter(len, ans)))
 
