@@ -5,6 +5,8 @@ TEEN = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen',
 TEN = ['', 'ten', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
 ORDER = ['', 'thousand', 'million', 'billion', 'trillion']
 
+import math
+
 def printnum(num):
     order = 0
     ans = []
@@ -12,12 +14,14 @@ def printnum(num):
     if num == 0:
         return DIGIT[num]
 
-    # import pdb; pdb.set_trace()
+    if math.log10(num) >= len(ORDER) * 3:
+        return 'too big'
 
     while num > 0:
         one, ten, hundred = [(num % 10**(p+1)) // 10**p for p in range(3)]
         num = num // 1000
-        ans.append(ORDER[order])
+        if any([one, ten, hundred]):
+            ans.append(ORDER[order])
         order += 1
         if ten == 1:
             ans.append(TEEN[one])
@@ -49,7 +53,13 @@ class TestPrintNum(unittest.TestCase):
         self.assertEqual(printnum(1234), 'one thousand two hundred thirty four')
         self.assertEqual(printnum(17319), 'seventeen thousand three hundred nineteen')
         self.assertEqual(printnum(107509), 'one hundred seven thousand five hundred nine')
+        self.assertEqual(printnum(10000000), 'ten million')
         self.assertEqual(printnum(91107509), 'ninety one million one hundred seven thousand five hundred nine')
+        self.assertEqual(printnum(123991107509), 'one hundred twenty three billion nine hundred ninety one million one hundred seven thousand five hundred nine')
+        self.assertEqual(printnum(760123991107509), 'seven hundred sixty trillion one hundred twenty three billion nine hundred ninety one million one hundred seven thousand five hundred nine')
+        self.assertEqual(printnum(10**13), 'ten trillion')
+        self.assertEqual(printnum(10**14), 'one hundred trillion')
+        self.assertEqual(printnum(10**15), 'too big')
 
 
 if __name__ == "__main__":
