@@ -7,7 +7,7 @@ def visit(j, visited, zombies, N):
             visited[k] = True
             visit(k, visited, zombies, N)
 
-def zombieCluster(zombies):
+def secondApproach_zombieCluster(zombies):
     N = len(zombies)
     visited = [False] * N
     clusters = 0
@@ -17,6 +17,18 @@ def zombieCluster(zombies):
             visited[i] = True
             visit(i, visited, zombies, N)
     return clusters
+
+# cleanear approach, now working:
+
+def zombieCluster(zombies):
+    N = len(zombies)
+    cluster = range(N)
+    for i in range(N):
+        for j in range(i + 1, N):
+            if zombies[i][j] == '1':
+                cluster[j] = min(cluster[i], cluster[j])
+                cluster[i] = cluster[j]
+    return len(set(cluster))
 
 import unittest
 
