@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 def offByOne(a, b):
     """return true if b can be made by removing one character from a.
@@ -52,3 +54,15 @@ def longestChain(words):
                         return max_limit
         cur -= 1
     return max([wd['chain'] for wds in word_len.values() for wd in wds])
+
+import unittest
+
+class TestStringChain(unittest.TestCase):
+
+  def testStringChain(self):
+     self.assertEqual(4, longestChain(['a', 'b', 'ba', 'bca', 'bda', 'bdca']))
+
+
+
+if __name__ == '__main__':
+    unittest.main()
