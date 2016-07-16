@@ -17,12 +17,13 @@ const assert = require('assert');
 assert(hasBalancePoint([1,2,3,4,5,4,3,2,1]));
 
 function processData(input) {
-    var inputs = input.split('\n').reverse();
-    var T = parseInt(inputs.pop());
-    for(var i = 0; i < T; i++) {
-      inputs.pop();
-      console.log(hasBalancePoint(inputs.pop().split(' ').map(Number)) ? 'YES' : 'NO');
-    }
+    input.split('\n')
+    .filter((a,i) => i !== 0)
+    .filter((a,i) => i % 2 !== 0)
+    .map(a => a.split(' ').map(Number))
+    .map(hasBalancePoint)
+    .map((a => a ? 'YES' : 'NO'))
+    .forEach(a => console.log(a));
 } 
 
 processData("2\n3\n1 2 3\n4\n1 2 3 3");
