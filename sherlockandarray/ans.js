@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 function hasBalancePoint(A) {
-    var left = 0;
-    var right = A.reduce((a,b) => a+b);
-    for(var i = 0; i < A.length; i++) {
+    var left = A[0];
+    var right = A.reduce((a,b) => a+b) - A[0];
+    for(var i = 1; i < A.length; i++) {
         right = right - A[i];
         if(left == right) {
             return true;
