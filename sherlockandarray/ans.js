@@ -14,7 +14,10 @@ function hasBalancePoint(A) {
 }
 
 const assert = require('assert');
-assert(hasBalancePoint([1,2,3,4,5,4,3,2,1]));
+assert(hasBalancePoint([1,2,3,4,5,4,3,2,1]), 'simple case');
+assert(!hasBalancePoint([1,-2,2]), 'i > 0');
+assert(!hasBalancePoint([1,-2,2]), 'i > 0');
+console.log(hasBalancePoint([0]));
 
 function processData(input) {
     input.split('\n')
