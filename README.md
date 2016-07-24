@@ -1,3 +1,3 @@
 Just saving some practice problems here.
 
-Some from <hackerrank.com> some from <leetcode.com>
+Some from https://www.hackerrank.com some from https://leetcode.com
