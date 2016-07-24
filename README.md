@@ -1,1 +1,3 @@
-Just saving some hackerrank problems here
+Just saving some practice problems here.
+
+Some from <hackerrank.com> some from <leetcode.com>
